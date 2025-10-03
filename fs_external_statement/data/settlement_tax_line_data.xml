@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="settlement_tax_line_iva_aranceles_ri" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_iva_aranceles_ri"/>
+        <field name="starting_position">63</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_impuesto_deb_cred" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_impuesto_deb_cred"/>
+        <field name="starting_position">77</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_iva_dto_pago_anticipado" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_iva_dto_pago_anticipado"/>
+        <field name="starting_position">91</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_ret_iva_ventas" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_ret_iva_ventas"/>
+        <field name="starting_position">105</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_percepcion_anticipada_iva" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_percepcion_anticipada_iva"/>
+        <field name="starting_position">119</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_ret_imp_ganancias" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_ret_imp_ganancias"/>
+        <field name="starting_position">133</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_ret_imp_ingresos_brutos" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_ret_imp_ingresos_brutos"/>
+        <field name="starting_position">147</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_percepcion_ingresos_brutos" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_percepcion_ingresos_brutos"/>
+        <field name="starting_position">161</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_iva_servicios" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_iva_servicios"/>
+        <field name="starting_position">175</field>
+        <field name="long">14</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_impuesto_ley_25063" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_impuesto_ley_25063"/>
+        <field name="starting_position">190</field>
+        <field name="long">10</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_arancel" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_arancel"/>
+        <field name="starting_position">200</field>
+        <field name="long">12</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_costo_financiero" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_costo_financiero"/>
+        <field name="starting_position">212</field>
+        <field name="long">12</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_ing_brutos_cba" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_ing_brutos_cba"/>
+        <field name="starting_position">234</field>
+        <field name="long">12</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_saldo_deudor" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_saldo_deudor"/>
+        <field name="starting_position">246</field>
+        <field name="long">12</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+    <record id="settlement_tax_line_sellados" model="settlement.tax.line">
+        <field name="settlement_tax_id" ref="settlement_tax_sellados"/>
+        <field name="starting_position">258</field>
+        <field name="long">12</field>
+        <field name="decimals_amount">2</field>
+    </record>
+
+</odoo>

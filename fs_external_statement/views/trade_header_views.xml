@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <!-- ==================== TRADE HEADER VIEWS ==================== -->
+    <record id="view_trade_header_tree" model="ir.ui.view">
+        <field name="name">trade.header.tree</field>
+        <field name="model">trade.header</field>
+        <field name="arch" type="xml">
+            <tree string="Cabeceras de Comercios" decoration-muted="state == 'processed'">
+                <field name="create_date" string="Fecha"/>
+                <field name="filename_external_statement_view" string="Archivo" readonly="1"/>
+                <field name="commerce_number" readonly="1"/>
+                <field name="state" readonly="1"/>
+                <field name="settlements_count" string="Liquidaciones" widget="statinfo"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_trade_header_search">
+        <field name="name">trade.header.search</field>
+        <field name="model">trade.header</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="filename_external_statement_view" string="Archivo"/>
+                <filter string="Borrador" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="En proceso" name="partial" domain="[('state','=','partial')]"/>
+                <filter string="Realizado" name="processed" domain="[('state','=','processed')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Estado" name="group_by_state" context="{'group_by':'state'}"/>
+                    <filter string="Fecha de creación" name="group_by_date" context="{'group_by':'create_date'}"/>
+                    <filter string="Numero de Comercio" name="group_by_commerce_number" context="{'group_by':'commerce_number'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_trade_header_form">
+        <field name="name">trade.header.form</field>
+        <field name="model">trade.header</field>
+        <field name="arch" type="xml">
+            <form string="Cabecera de Comercio">
+                <header>
+                    <button name="action_generate_bank_statement" 
+                            string="Generar extractos bancarios"
+                            type="object" 
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '!=', 'draft'), ('settlements_count', '>', 0)]}"/>
+                    <button name="set_draft"
+                            string="Cambiar a borrador"
+                            type="object"
+                            class="oe_highlight"
+                            attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_related_bank_statement" 
+                                type="object" 
+                                class="oe_stat_button" 
+                                icon="fa-bank"
+                                string="Extractos Bancarios"
+                                >
+                        </button>
+                        <button name="action_view_settlements"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-list">
+                            <field name="settlements_count" widget="statinfo" string="Cabeceras de Liquidaciones"/>
+                        </button>
+                    </div>
+                    
+                    <div class="oe_title">
+                        <h1>
+                            <field name="filename_external_statement_view" readonly="1" class="mb8"/>
+                        </h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="name" string="Referencia" readonly="1"/>
+                            <field name="commerce_number" readonly="1"/>
+                            <field name="create_date" string="Fecha de Importación" readonly="1"/>
+                            <field name="file_external_statement" filename="filename_external_statement" widget="file" string="Archivo" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Cabecera de Liquidaciones">
+                            <field name="settlement_header_ids"
+                                   context="{'default_trade_header_id': id}"
+                                   view_id="fs_external_statement.view_settlement_header_tree"
+                            />
+                        </page>
+                    </notebook>
+                    
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_window_trade_header">
+        <field name="name">Cabecera de Comercio</field>
+        <field name="res_model">trade.header</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

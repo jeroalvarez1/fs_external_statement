@@ -1,0 +1,8 @@
+<odoo>
+    <template id="assets_backend" inherit_id="web.assets_backend" name="fs_external_statement assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/fs_external_statement/static/src/js/reconciliation_renderer.js"/>
+            <script type="text/javascript" src="/fs_external_statement/static/src/js/import_external_statement.js"></script>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="account_card_tax" model="account.account">
+        <field name="code">1.1.1.01.899</field>
+        <field name="name">Impuestos de tarjeta</field>
+        <field name="user_type_id" ref="account.data_account_type_expenses"/>
+    </record>
+
+    <record id="account_aranceles_ri" model="account.account">
+        <field name="code">1.1.1.01.900</field>
+        <field name="name">IVA Aranceles R.I.</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_impuesto_deb_cred" model="account.account">
+        <field name="code">1.1.1.01.901</field>
+        <field name="name">Impuesto Débito / Crédito</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_iva_dto_pago_anticipado" model="account.account">
+        <field name="code">1.1.1.01.902</field>
+        <field name="name">IVA Dto. Pago Anticipado</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_ret_iva_ventas" model="account.account">
+        <field name="code">1.1.1.01.903</field>
+        <field name="name">Retención IVA Ventas</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_percepcion_anticipada_iva" model="account.account">
+        <field name="code">1.1.1.01.904</field>
+        <field name="name">Percepción Anticipada IVA</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_ret_imp_ganancias" model="account.account">
+        <field name="code">1.1.1.01.905</field>
+        <field name="name">Retención Impuesto a las Ganancias</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_ret_imp_ingresos_brutos" model="account.account">
+        <field name="code">1.1.1.01.906</field>
+        <field name="name">Retención Ingresos Brutos</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_percepcion_ingresos_brutos" model="account.account">
+        <field name="code">1.1.1.01.907</field>
+        <field name="name">Percepción Ingresos Brutos</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_iva_servicios" model="account.account">
+        <field name="code">1.1.1.01.908</field>
+        <field name="name">IVA Servicios</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_impuesto_ley_25063" model="account.account">
+        <field name="code">1.1.1.01.909</field>
+        <field name="name">Impuesto Ley 25063</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_arancel" model="account.account">
+        <field name="code">1.1.1.01.910</field>
+        <field name="name">Arancel</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_costo_financiero" model="account.account">
+        <field name="code">1.1.1.01.911</field>
+        <field name="name">Costo Financiero</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_ing_brutos_cba" model="account.account">
+        <field name="code">1.1.1.01.912</field>
+        <field name="name">Ingresos Brutos Córdoba</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_saldo_deudor" model="account.account">
+        <field name="code">1.1.1.01.913</field>
+        <field name="name">Saldo Deudor</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+    <record id="account_sellados" model="account.account">
+        <field name="code">1.1.1.01.914</field>
+        <field name="name">Sellados</field>
+        <field name="user_type_id" ref="account.data_account_type_current_liabilities"/>
+    </record>
+
+</odoo>

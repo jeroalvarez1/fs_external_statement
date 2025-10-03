@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem name="Extractos Bancarios Externos" id="menuitem_fs_external_statement"
+    	parent="account.menu_finance_receivables"
+        sequence="140"/>
+
+    <menuitem name="Importar Liquidaciones" id="menuitem_fs_external_statement_records"
+    	parent="fs_external_statement.menuitem_fs_external_statement" action="action_window_trade_header"
+        sequence="1"/>
+
+    <menuitem name="Cabecera de Liquidaciones" id="menuitem_fs_external_statement_settlements_header"
+    	parent="fs_external_statement.menuitem_fs_external_statement" action="action_window_settlement_header"
+        sequence="2"/>
+
+    <menuitem name="Detalles de Transaccion" id="menuitem_fs_external_statement_transaction_detail"
+    	parent="fs_external_statement.menuitem_fs_external_statement" action="action_window_transaction_detail"
+        sequence="3"/>
+
+    <menuitem name="Metodos de pago" id="menuitem_fs_external_statement_payment_methods"
+    	parent="fs_external_statement.menuitem_fs_external_statement" action="external_statement_payment_methods_action_window"
+        sequence="5"/>
+
+    <menuitem name="Impuesto sobre la liquidación" id="menuitem_fs_external_statement_settlement_tax"
+    	parent="fs_external_statement.menuitem_fs_external_statement" action="action_window_settlement_tax"
+        sequence="6"/>
+
+    <menuitem name="Configuración del Banco Externo" id="menuitem_fs_external_statement_external_bank_config"
+    	parent="fs_external_statement.menuitem_fs_external_statement" action="action_window_external_bank_config"
+        sequence="9"/>
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<record id="view_import_external_statement_wizard_form" model="ir.ui.view">
+        <field name="name">import.external_statement.wizard.form</field>
+        <field name="model">import.external_statement.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Importar Archivo de Liquidación">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="filename_external_statement" invisible="1"/>
+                            <field name="file_external_statement" filename="filename_external_statement" string="Archivo de Liquidación"/>
+                            <field name="external_bank_config_id"/>
+                            <field name="field_type"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Importar" type="object" class="oe_highlight" name="action_import"/>
+                    <button string="Cerrar" class="btn btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="action_import_external_statement_wizard" name="Importar Liquidaciones"
+    	res_model="import.external_statement.wizard" view_mode="form" view_id="view_import_external_statement_wizard_form" target="new"/>
+</odoo>

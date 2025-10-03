@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- ==================== SETTLEMENT TRAILER VIEWS ==================== -->
+    
+    <record id="view_settlement_trailer_tax_notebook_page_tree" model="ir.ui.view">
+        <field name="name">settlement.trailer.tax.notebook.page.tree</field>
+        <field name="model">settlement.trailer.tax</field>
+        <field name="arch" type="xml">
+            <tree string="Trailer de Liquidación (Impuestos)"
+                  default_order="base_settlement_tax_id, parent_type"
+                  decoration-muted="parent_type == 'tax'"
+                  create="false" delete="false"
+                  editable="bottom"
+            >
+                <field name="name" readonly="1"/>
+                <field name="parent_type" readonly="1"/>
+                <field name="base_settlement_tax_id" invisible="1"/>
+                <field name="settlement_tax_id" readonly="1"/>
+                <field name="total" sum="Total" class="text-right" widget="monetary" readonly="1"/>
+                <field name="processed" widget="boolean_toggle" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_settlement_trailer_tax_search">
+        <field name="name">settlement.trailer.tax.search</field>
+        <field name="model">settlement.trailer.tax</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="total" />
+                <filter string="Unprocessed" name="unprocessed" domain="[('processed','=',False)]"/>
+                <filter string="Processed" name="processed" domain="[('processed','=',True)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Método de Pago" name="group_by_payment" context="{'group_by':'product'}"/>
+                    <filter string="Diario" name="group_by_journal" context="{'group_by':'journal_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_settlement_trailer_tax_form">
+        <field name="name">settlement.trailer.tax.form</field>
+        <field name="model">settlement.trailer.tax</field>
+        <field name="arch" type="xml">
+            <form string="Trailer de Liquidación (Impuestos)">
+                <header>
+                    <field name="processed" widget="boolean_toggle"
+                           options="{'terminology': {'title_click': true}}" readonly="1" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <span>Impuesto #</span>
+                            <field name="name" class="d-inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Base">
+                            <field name="total" widget="monetary" />
+                            <field name="settlement_tax_id" />
+                        </group>
+                        <group string="Detalle">
+                            <field name="settlement_header_id" />
+                            <field name="settlement_number" />
+                            <field name="product" />
+                            <field name="journal_id" />
+                            <field name="external_statement_payment_method_description" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>

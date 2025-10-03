@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="product_arancel" model="product.template">
+        <field name="name">Arancel</field>
+        <field name="sale_ok">False</field>
+        <field name="purchase_ok">True</field>
+        <field name="type">service</field>
+        <field name="property_account_expense_id" ref="account_arancel"/>
+    </record>
+
+</odoo>

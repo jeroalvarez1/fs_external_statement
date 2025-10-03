@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_journal_form_inherit" model="ir.ui.view">
+        <field name="name">account.journal.form.inherit</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <field name="post_at" position="after">
+                <field name="partner_id" attrs="{'invisible': [('post_at', '=', 'pay_val')]}"/>
+                <field name="non_reconcile_journal_id" attrs="{'invisible': [('post_at', '=', 'pay_val')]}"/>
+                <field name="bank_journal_id" attrs="{'invisible': [('post_at', '=', 'pay_val')]}"/>
+                <field name="settlement_tax_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+</odoo>

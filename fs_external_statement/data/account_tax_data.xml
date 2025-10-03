@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="account_tax_aranceles_ri" model="account.tax">
+        <field name="name">IVA Aranceles R.I.</field>
+        <field name="description">IVA Aranceles R.I.</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_aranceles_ri')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_aranceles_ri')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="l10n_ar.tax_group_iva_21"/>
+    </record>
+
+    <record id="account_tax_impuesto_deb_cred" model="account.tax">
+        <field name="name">Impuesto Débito / Crédito</field>
+        <field name="description">Impuesto Débito / Crédito</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_impuesto_deb_cred')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_impuesto_deb_cred')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_iva_dto_pago_anticipado" model="account.tax">
+        <field name="name">IVA Dto. Pago Anticipado</field>
+        <field name="description">IVA Dto. Pago Anticipado</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_iva_dto_pago_anticipado')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_iva_dto_pago_anticipado')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_ret_iva_ventas" model="account.tax">
+        <field name="name">Retención IVA Ventas</field>
+        <field name="description">Retención IVA Ventas</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ret_iva_ventas')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ret_iva_ventas')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_percepcion_anticipada_iva" model="account.tax">
+        <field name="name">Percepción Anticipada IVA</field>
+        <field name="description">Percepción Anticipada IVA</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_percepcion_anticipada_iva')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_percepcion_anticipada_iva')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_ret_imp_ganancias" model="account.tax">
+        <field name="name">Retención Impuesto a las Ganancias</field>
+        <field name="description">Retención Impuesto a las Ganancias</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ret_imp_ganancias')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ret_imp_ganancias')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_ret_imp_ingresos_brutos" model="account.tax">
+        <field name="name">Retención Ingresos Brutos</field>
+        <field name="description">Retención Ingresos Brutos</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ret_imp_ingresos_brutos')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ret_imp_ingresos_brutos')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_percepcion_ingresos_brutos" model="account.tax">
+        <field name="name">Percepción Ingresos Brutos</field>
+        <field name="description">Percepción Ingresos Brutos</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_percepcion_ingresos_brutos')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_percepcion_ingresos_brutos')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_iva_servicios" model="account.tax">
+        <field name="name">IVA Servicios</field>
+        <field name="description">IVA Servicios</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_iva_servicios')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_iva_servicios')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_impuesto_ley_25063" model="account.tax">
+        <field name="name">Impuesto Ley 25063</field>
+        <field name="description">Impuesto Ley 25063</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_impuesto_ley_25063')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_impuesto_ley_25063')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_costo_financiero" model="account.tax">
+        <field name="name">Costo Financiero</field>
+        <field name="description">Costo Financiero</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_costo_financiero')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_costo_financiero')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_ing_brutos_cba" model="account.tax">
+        <field name="name">Ingresos Brutos Córdoba</field>
+        <field name="description">Ingresos Brutos Córdoba</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ing_brutos_cba')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_ing_brutos_cba')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_saldo_deudor" model="account.tax">
+        <field name="name">Saldo Deudor</field>
+        <field name="description">Saldo Deudor</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_saldo_deudor')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_saldo_deudor')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+    <record id="account_tax_sellados" model="account.tax">
+        <field name="name">Sellados</field>
+        <field name="description">Sellados</field>
+        <field name="amount_type">fixed</field>
+        <field name="active">True</field>
+        <field name="amount" eval="0.0"/>
+        <field name="invoice_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_sellados')}),
+        ]"/>
+        <field name="refund_repartition_line_ids" eval="[(5,0,0),
+            (0,0,{'factor_percent':100,'repartition_type':'base'}),
+            (0,0,{'factor_percent':100,'repartition_type':'tax','account_id':ref('fs_external_statement.account_sellados')}),
+        ]"/>
+        <field name="type_tax_use">purchase</field>
+        <field name="tax_group_id" ref="fs_external_statement.account_tax_group_liq_tarjetas"/>
+    </record>
+
+</odoo>

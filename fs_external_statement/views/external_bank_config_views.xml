@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- ==================== TRADE HEADER FIELD CONFIG VIEWS ==================== -->
+
+    <record id="view_trade_header_field_config_tree" model="ir.ui.view">
+        <field name="name">trade.header.field.config.tree</field>
+        <field name="model">trade.header.field.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones de Campos">
+                <field name="name"/>
+                <field name="destination_field_id"/>
+                <field name="start_with"/>
+                <field name="line_number"/>
+                <field name="starting_position"/>
+                <field name="end_position"/>
+                <field name="row"/>
+                <field name="col"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_trade_header_field_config_form" model="ir.ui.view">
+        <field name="name">trade.header.field.config.form</field>
+        <field name="model">trade.header.field.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Campo">
+                <sheet>
+                    <group>
+                        <group string="Información General">
+                            <field name="destination_field_id"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Configuración Archivo .txt">
+                            <field name="start_with"/>
+                            <field name="line_number"/>
+                            <field name="starting_position"/>
+                            <field name="end_position"/>
+                        </group>
+                        <group string="Configuración Excel (.csv, .xls, .xlsx)">
+                            <field name="row"/>
+                            <field name="col"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== TRADE HEADER CONFIG VIEWS ==================== -->
+
+    <record id="view_trade_header_config_tree" model="ir.ui.view">
+        <field name="name">trade.header.config.tree</field>
+        <field name="model">trade.header.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones de Cabeceras de Comercios">
+                <field name="name"/>
+                <field name="field_type"/>
+                <field name="field_config_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_trade_header_config_form" model="ir.ui.view">
+        <field name="name">trade.header.config.form</field>
+        <field name="model">trade.header.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Cabecera de Comercio">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="field_type" class="oe_edit_only"/>
+                        <h1>
+                            <field name="field_type" class="oe_inline" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="external_bank_config_id"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Configuraciones de Campos" name="field_configs">
+                            <field name="field_config_ids" context="{'default_trade_header_config_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== SETTLEMENT HEADER FIELD CONFIG VIEWS ==================== -->
+
+    <record id="view_settlement_header_field_config_tree" model="ir.ui.view">
+        <field name="name">settlement.header.field.config.tree</field>
+        <field name="model">settlement.header.field.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones de Campos">
+                <field name="name"/>
+                <field name="destination_field_id"/>
+                <field name="search_type"/>
+                <field name="is_liquidation_number"/>
+                <field name="group_by"/>
+                <field name="start_with"/>
+                <field name="line_number"/>
+                <field name="starting_position"/>
+                <field name="end_position"/>
+                <field name="row"/>
+                <field name="col"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_settlement_header_field_config_form" model="ir.ui.view">
+        <field name="name">settlement.header.field.config.form</field>
+        <field name="model">settlement.header.field.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Campo">
+                <sheet>
+                    <group>
+                        <group string="Información General">
+                            <field name="destination_field_id"/>
+                            <field name="search_type"/>
+                        </group>
+                        <group string="Configuración Especial">
+                            <field name="is_liquidation_number"/>
+                            <field name="group_by"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Configuración Archivo .txt">
+                            <field name="start_with"/>
+                            <field name="line_number"/>
+                            <field name="starting_position"/>
+                            <field name="end_position"/>
+                        </group>
+                        <group string="Configuración Excel">
+                            <field name="row"/>
+                            <field name="col"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Formato de Fechas">
+                            <field name="origin_date_format"/>
+                            <field name="dest_date_format"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== SETTLEMENT HEADER CONFIG VIEWS ==================== -->
+
+    <record id="view_settlement_header_config_tree" model="ir.ui.view">
+        <field name="name">settlement.header.config.tree</field>
+        <field name="model">settlement.header.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones de Cabeceras de Liquidación">
+                <field name="name"/>
+                <field name="field_type"/>
+                <field name="search_type"/>
+                <field name="field_config_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_settlement_header_config_form" model="ir.ui.view">
+        <field name="name">settlement.header.config.form</field>
+        <field name="model">settlement.header.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Cabecera de Liquidación">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="field_type" class="oe_edit_only"/>
+                        <h1>
+                            <field name="field_type" class="oe_inline" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="external_bank_config_id"/>
+                            <field name="search_type"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Configuraciones de Campos" name="field_configs">
+                            <field name="field_config_ids" context="{'default_settlement_header_config_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== TRANSACTION DETAIL FIELD CONFIG VIEWS ==================== -->
+
+    <record id="view_transaction_detail_field_config_tree" model="ir.ui.view">
+        <field name="name">transaction.detail.field.config.tree</field>
+        <field name="model">transaction.detail.field.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones de Campos">
+                <field name="name"/>
+                <field name="destination_field_id"/>
+                <field name="search_type"/>
+                <field name="is_liquidation_number"/>
+                <field name="start_with"/>
+                <field name="starting_position"/>
+                <field name="end_position"/>
+                <field name="col"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_transaction_detail_field_config_form" model="ir.ui.view">
+        <field name="name">transaction.detail.field.config.form</field>
+        <field name="model">transaction.detail.field.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Campo">
+                <sheet>
+                    <group>
+                        <group string="Información General">
+                            <field name="destination_field_id"/>
+                            <field name="search_type"/>
+                        </group>
+                        <group string="Configuración Especial">
+                            <field name="is_liquidation_number"/>
+                            <field name="liquidation_type"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Configuración Archivo .txt">
+                            <field name="start_with"/>
+                            <field name="starting_position"/>
+                            <field name="end_position"/>
+                        </group>
+                        <group string="Configuración Excel">
+                            <field name="col"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Formato de Fechas">
+                            <field name="origin_date_format"/>
+                            <field name="dest_date_format"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== TRANSACTION DETAIL CONFIG VIEWS ==================== -->
+
+    <record id="view_transaction_detail_config_tree" model="ir.ui.view">
+        <field name="name">transaction.detail.config.tree</field>
+        <field name="model">transaction.detail.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones de Detalles de Transacciones">
+                <field name="name"/>
+                <field name="field_type"/>
+                <field name="search_type"/>
+                <field name="field_config_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_transaction_detail_config_form" model="ir.ui.view">
+        <field name="name">transaction.detail.config.form</field>
+        <field name="model">transaction.detail.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Detalle de Transacción">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="field_type" class="oe_edit_only"/>
+                        <h1>
+                            <field name="field_type" class="oe_inline" required="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="external_bank_config_id"/>
+                            <field name="search_type"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Configuraciones de Campos" name="field_configs">
+                            <field name="field_config_ids" context="{'default_transaction_detail_config_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== SETTLEMENT TAX CONFIG VIEWS ================== -->
+    <record id="view_settlement_tax_config_tree" model="ir.ui.view">
+        <field name="name">settlement.tax.config.tree</field>
+        <field name="model">settlement.tax.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuraciones de Impuestos">
+                <field name="name"/>
+                <field name="external_bank_config_id"/>
+                <field name="field_type"/>
+                <field name="search_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_settlement_tax_config_form" model="ir.ui.view">
+        <field name="name">settlement.tax.config.form</field>
+        <field name="model">settlement.tax.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración de Impuesto">
+                <sheet>
+                    <group>
+                        <field name="name" readonly="1"/>
+                        <field name="external_bank_config_id"/>
+                        <field name="field_type"/>
+                        <field name="search_type"/>
+                    </group>
+                    <notebook>
+                        <page string="Campos de Configuración">
+                            <field name="field_config_ids" context="{'default_settlement_tax_config_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ==================== EXTERNAL BANK CONFIG VIEWS ==================== -->
+
+    <record id="view_external_bank_config_tree" model="ir.ui.view">
+        <field name="name">external.bank.config.tree</field>
+        <field name="model">external.bank.config</field>
+        <field name="arch" type="xml">
+            <tree string="Configuración de Bancos Externos">
+                <field name="name"/>
+                <field name="trade_header_config_ids" widget="many2many_tags"/>
+                <field name="settlement_header_config_ids" widget="many2many_tags"/>
+                <field name="transaction_detail_config_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_external_bank_config_form" model="ir.ui.view">
+        <field name="name">external.bank.config.form</field>
+        <field name="model">external.bank.config</field>
+        <field name="arch" type="xml">
+            <form string="Configuración del Banco Externo">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Nombre del banco"/>
+                        </h1>
+                    </div>
+
+                    <notebook>
+                        <page string="Cabeceras de Comercios" name="trade_headers">
+                            <field name="trade_header_config_ids" context="{'default_external_bank_config_id': active_id}"/>
+                        </page>
+
+                        <page string="Cabeceras de Liquidación" name="settlement_headers">
+                            <field name="settlement_header_config_ids" context="{'default_external_bank_config_id': active_id}"/>
+                        </page>
+
+                        <page string="Detalles de Transacciones" name="transaction_details">
+                            <field name="transaction_detail_config_ids" context="{'default_external_bank_config_id': active_id}"/>
+                        </page>
+
+                        <page string="Impuestos" name="settlement_taxes"> <!--TODO FALTA AGREAGR LA VISTA-->
+                            <field name="settlement_tax_config_ids" context="{'default_external_bank_config_id': active_id}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_external_bank_config_search" model="ir.ui.view">
+        <field name="name">external.bank.config.search</field>
+        <field name="model">external.bank.config</field>
+        <field name="arch" type="xml">
+            <search string="Buscar Banco Externo">
+                <field name="name" string="Banco" filter_domain="[('name','ilike',self)]"/>
+                <field name="trade_header_config_ids"/>
+                <field name="settlement_header_config_ids"/>
+                <field name="transaction_detail_config_ids"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Banco" name="group_by_bank" context="{'group_by':'name'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ==================== ACTIONS ==================== -->
+
+    <record id="action_window_external_bank_config" model="ir.actions.act_window">
+        <field name="name">Configuración de Bancos Externos</field>
+        <field name="res_model">external.bank.config</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_external_bank_config_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crear una nueva configuración de banco externo
+            </p>
+            <p>
+                Configure los bancos externos y sus respectivas cabeceras de comercios,
+                liquidación y detalles de transacciones.
+            </p>
+        </field>
+    </record>
+
+</odoo>

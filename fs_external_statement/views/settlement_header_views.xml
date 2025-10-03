@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!-- ==================== SETTLEMENT HEADER VIEWS ==================== -->
+    <record id="view_settlement_header_tree" model="ir.ui.view">
+        <field name="name">settlement.header.tree</field>
+        <field name="model">settlement.header</field>
+        <field name="arch" type="xml">
+            <tree string="Settlements"
+                  create="false" delete="false"
+                  decoration-muted="state == 'processed'">
+                <field name="settlement_number" />
+                <field name="product" />
+                <field name="external_statement_payment_method_description" />
+                <field name="journal_id" />
+                <field name="total_amount" sum="Total" widget="monetary" />
+                <field name="transactions_count" widget="statinfo" />
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_settlement_header_search">
+        <field name="name">settlement.header.search</field>
+        <field name="model">settlement.header</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="settlement_number" />
+                <filter string="Borrador" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="En proceso" name="partial" domain="[('state','=','partial')]"/>
+                <filter string="Realizado" name="processed" domain="[('state','=','processed')]"/>
+                <group expand="0" string="Agrupar por">
+                    <filter string="Diario" name="group_by_journal" context="{'group_by':'journal_id'}"/>
+                    <filter string="Método de pago" name="group_by_payment" context="{'group_by':'product'}"/>
+                    <filter string="Estado" name="group_by_state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_settlement_header_form">
+        <field name="name">settlement.header.form</field>
+        <field name="model">settlement.header</field>
+        <field name="arch" type="xml">
+            <form string="Cabecera de Liquidaciones">
+                <header>
+                    <button name="action_view_transaction_detail"
+                            type="object"
+                            string="Ver transacciones"
+                            class="oe_highlight"
+                            icon="fa-list"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_transaction_detail"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-list">
+                            <field name="transactions_count" widget="statinfo" string="Transactions"/>
+                        </button>
+                    </div>
+
+                    <div class="oe_title">
+                        <h1>
+                            <span>Cabecera #</span>
+                            <field name="settlement_number" class="d-inline" readonly="1"/>
+                        </h1>
+                        <h3>
+                            <field name="external_statement_payment_method_description" readonly="1"/>
+                        </h3>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="product" readonly="1"/>
+                            <field name="journal_id" readonly="1"/>
+                            <field name="trade_header_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="total_amount" widget="monetary" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="Detalles de Transacciones">
+                            <field name="transaction_detail_ids"
+                                   context="{'default_settlement_header_id': id}"
+                                   view_id="fs_external_statement.view_transaction_detail_tree"
+                            />
+                        </page>
+                        <page string="Trailer de Liquidación">
+                            <field name="settlement_trailer_tax_ids" context="{}" mode="tree" view_id="fs_external_statement.view_settlement_trailer_notebook_page_tree"/>
+                        </page>
+                    </notebook>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+     <record model="ir.actions.act_window" id="action_window_settlement_header">
+        <field name="name">Cabecera de Liquidaciones</field>
+        <field name="res_model">settlement.header</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'group_by': 'journal_id'}</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bank_statement_line_form_inherit" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.form.inherit</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="inherit_id" ref="account.view_bank_statement_line_form"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field name="batch"/>
+                <field name="terminal"/>
+                <field name="last_four_digits_card"/>
+                <field name="coupon"/>
+                <field name="external_statement_transaction_detail_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_bank_statement_line_tree_inherit" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.tree.inherit</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="inherit_id" ref="account.view_bank_statement_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field name="batch"/>
+                <field name="terminal"/>
+                <field name="last_four_digits_card"/>
+                <field name="coupon"/>
+                <field name="payment_names"/>
+                <field name="total_payment_amount"/>
+                <field name="difference_amount"/>
+                <field name="external_statement_transaction_detail_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_bank_statement_line_tree_reconciled_state" model="ir.ui.view">
+        <field name="name">account.bank.statement.line.tree.reconciled.state</field>
+        <field name="model">account.bank.statement.line</field>
+        <field name="arch" type="xml">
+            <tree default_order="reconciled desc, name"
+                decoration-danger="not reconciled"
+                decoration-success="reconciled">
+                <field name="reconciled" invisible="1"/>
+                <field name="date"/>
+                <field name="name"/>
+                <field name="amount"/>
+                <field name="payment_names"/>
+                <field name="total_payment_amount"/>
+                <field name="difference_amount"/>
+            </tree>
+        </field>
+    </record>
+
+    <report
+        id="report_bank_statement_line_pdf"
+        model="account.bank.statement.line"
+        string="Reporte Líneas de Extracto"
+        report_type="qweb-pdf"
+        name="fs_external_statement.report_bank_statement_line_document"
+        file="fs_external_statement.report_bank_statement_line_document"
+    />
+
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="account_journal_card_tax" model="account.journal">
+        <field name="name">Impuesto de Tarjeta</field>
+        <field name="type">purchase</field>
+        <field name="code">IMPT</field>
+        <field name="l10n_latam_use_documents">True</field>
+        <field name="default_debit_account_id" ref="account_card_tax"/>
+        <field name="default_credit_account_id" ref="account_card_tax"/>
+    </record>
+
+</odoo>

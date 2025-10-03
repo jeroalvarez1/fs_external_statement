@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_bank_statement_form_inherit" model="ir.ui.view">
+        <field name="name">account.bank.statement.form.inherit</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_apply_taxes_and_transfer_bank"
+                        class="oe_highlight" type="object"
+                        string="Aplicar impuestos y transferir al banco"
+                        attrs="{'invisible': ['|', ('tax_invoice_id', '!=', False), ('state', '=', 'open')]}"
+                />
+            </xpath>
+            <xpath expr="//button[@name='cancel_all_lines']" position="replace">
+                <button name="cancel_lines" string="Cancelar Todo" type="object" states="open" groups="base.group_no_one" confirm="Si confirma se van a cancelar las conciliaciones de todas las líneas (y borrar los asientos que se hayan generado con las mismas), esto no puede deshacerce. Seguro que desea continuar?"/>
+            </xpath>
+            <xpath expr="//button[@name='action_bank_reconcile_bank_statements']" position="attributes">
+                <attribute name="context">{'dynamic_reconciliation': True}</attribute>
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="button_open_reconciliation_report"
+                        string="Reporte de Conciliación" type="object"
+                        attrs="{'invisible':[('move_line_count','=', 0)]}" icon="fa-bars"/>
+            </xpath>
+            <field name="journal_id" position="after">
+                <field name="settlement_number" readonly="1"/>
+                <field name="trade_header_id" readonly="1"/>
+            </field>
+            <field name="company_id" position="after">
+               <field name="transfer_id" readonly="1"/>
+               <field name="tax_invoice_id" readonly="1"/>
+            </field>
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="terminal"/>
+                <field name="last_four_digits_card"/>
+                <field name="batch"/>
+                <field name="coupon"/>
+                <field name="external_statement_transaction_detail_id"/>
+            </xpath>
+            <xpath expr="//button[@name='button_cancel_reconciliation']" position="replace">
+                <button name="cancel_reconciliation" attrs="{'invisible': ['|',('journal_entry_ids', '=', []), ('state', '=', 'confirm')]}" string="Revertir Conciliación" type="object" icon="fa-undo"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+               <page string="Trailer de Liquidación">
+                   <field name="tax_invoice_id" invisible="1"/>
+                   <field name="account_bank_statement_trailer_tax_ids" attrs="{'readonly': [('tax_invoice_id','!=',False)]}">
+                       <tree editable="bottom"
+                             default_order="base_settlement_tax_id, parent_type"
+                             decoration-muted="parent_type == 'tax'"
+                       >
+                           <field name="name"/>
+                           <field name="settlement_tax_id"/>
+                           <field name="parent_type"/>
+                           <field name="base_settlement_tax_id" invisible="1"/>
+                           <field name="total"/>
+                       </tree>
+                   </field>
+               </page>
+            </xpath>
+            <xpath expr="//group[@name='sale_total']" position="replace">
+                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                    <div class="oe_subtotal_footer_separator oe_inline" style="border-top: 0;">
+                        <label for="balance_end"/>
+                    </div>
+                    <field name="balance_end" nolabel="1" class="oe_subtotal_footer_separator" style="border-top: 0;"/>
+                    <div class="oe_subtotal_footer_separator oe_inline" style="border-top: 0;">
+                        <label for="tax_total_amount"/>
+                    </div>
+                    <field name="tax_total_amount" nolabel="1" class="oe_subtotal_footer_separator" style="border-top: 0;"/>
+                    <div class="oe_subtotal_footer_separator oe_inline">
+                        <label for="net_balance_end" style="font-weight: bold; font-size: 14px;"/>
+                    </div>
+                    <field name="net_balance_end" nolabel="1"
+                           class="oe_subtotal_footer_separator"
+                           style="font-weight: bold; font-size: 16px; color: #000;"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

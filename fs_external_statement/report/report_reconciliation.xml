@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_bank_statement_line_document">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <h2>Reporte de Líneas Conciliadas</h2>
+
+                <!-- Estilos CSS -->
+                <style>
+                    .bank-report-table {
+                        width: 100%;
+                        border-collapse: collapse;
+                        font-family: Arial, sans-serif;
+                        font-size: 10px;
+                    }
+                    .bank-report-table th, .bank-report-table td {
+                        border: 1px solid #ddd;
+                        padding: 6px;
+                    }
+                    .bank-report-table th {
+                        background-color: #f2f2f2;
+                        text-align: center;
+                    }
+                    .bank-report-table th.date-column,
+                    .bank-report-table td.date-column {
+                        width: 12%;
+                    }
+                    .bank-report-table td.text-center {
+                        text-align: center;
+                    }
+                    .bank-report-table td.text-right {
+                        text-align: right;
+                    }
+                    /* Alternar color de filas */
+                    .bank-report-table tbody tr:nth-child(even) {
+                        background-color: #fafafa;
+                    }
+                    .badge-yes {
+                        background-color: #28a745;
+                        color: white;
+                        padding: 2px 6px;
+                        border-radius: 4px;
+                        font-size: 10px;
+                    }
+                    .badge-no {
+                        background-color: #dc3545;
+                        color: white;
+                        padding: 2px 6px;
+                        border-radius: 4px;
+                        font-size: 10px;
+                    }
+                </style>
+
+                <!-- Tabla -->
+                <table class="bank-report-table">
+                    <thead>
+                        <tr>
+                            <th class="date-column">Fecha</th>
+                            <th>Nombre</th>
+                            <th>Monto</th>
+                            <th>Pagos</th>
+                            <th>Total Pagos</th>
+                            <th>Diferencia</th>
+                            <th>Conciliado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="docs" t-as="line">
+                            <tr>
+                                <td class="text-center date-column"><t t-esc="line.date"/></td>
+                                <td><t t-esc="line.name"/></td>
+                                <td class="text-right"><t t-esc="line.amount" t-options='{"widget": "monetary", "display_currency": line.company_id.currency_id}'/></td>
+                                <td><t t-raw="line.payment_names"/></td>
+                                <td class="text-right"><t t-esc="line.total_payment_amount" t-options='{"widget": "monetary", "display_currency": line.company_id.currency_id}'/></td>
+                                <td class="text-right"><t t-esc="line.difference_amount" t-options='{"widget": "monetary", "display_currency": line.company_id.currency_id}'/></td>
+                                <td class="text-center">
+                                    <span t-if="line.reconciled" class="badge-yes">Sí</span>
+                                    <span t-if="not line.reconciled" class="badge-no">No</span>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

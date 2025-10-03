@@ -1,0 +1,51 @@
+{
+    "name": "Fs Extractos Bancarios Externos",
+    "summary": """
+        Módulo para importar las liquidaciones de Bancos, 
+        conciliar automáticamente con los extractos bancarios, 
+        generar facturas de compra al proveedor de la tarjeta 
+        y realizar la transferencia desde la cuenta de la tarjeta 
+        hacia la cuenta bancaria correspondiente.
+    """,
+    "author": "Foca Software",
+    "maintainers": ["jeroalvarez1"],
+    "website": "https://focasoftware.com/",
+    "license": "AGPL-3",
+    "category": "Accounting",
+    "version": "13.0.0.0.0",
+    'images': ['static/description/icon.png'],
+    "application": True,
+    "installable": True,
+    "depends": [
+        'account',
+        'account_ux',
+        'l10n_ar'
+    ],
+    "data": [
+        'security/ir.model.access.csv',
+        #'data/external_statement_payment_methods_data.xml',
+        #'data/account_account_data.xml',
+        #'data/product_template_data.xml',
+        #'data/account_tax_group_data.xml',
+        #'data/account_tax_data.xml',
+        #'data/settlement_tax_data.xml',
+        #'data/settlement_tax_line_data.xml',
+        #'data/account_journal_data.xml',
+        'views/account_journal_views.xml',
+        'views/view_bank_statement.xml',
+        'views/view_bank_statement_line.xml',
+        'views/account_journal_views.xml',
+        'views/settlement_trailer_tax_views.xml',
+        'views/settlement_tax_line_views.xml',
+        'views/settlement_tax_views.xml',
+        'views/external_bank_config_views.xml',
+        'views/trade_header_views.xml',
+        'views/settlement_header_views.xml',
+        'views/transaction_detail_views.xml',
+        'views/external_statement_payment_methods_views.xml',
+        'views/external_statement_menu.xml',
+        'wizard/import_external_statement_wizard_views.xml',
+        'views/assets.xml',
+    ],
+    "qweb": ["static/src/xml/qweb.xml"],
+}

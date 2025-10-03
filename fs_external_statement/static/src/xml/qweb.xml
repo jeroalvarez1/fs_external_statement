@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-extend="ListView.buttons">
+        <t t-jquery="button.o_list_button_add" t-operation="after">
+			<t t-if="widget.modelName == 'trade.header'">
+				<button class="btn btn-secondary o_list_import_settlements" type="button">Importar Liquidaciones</button>
+			</t>
+		</t>
+    </t>
+</template>
